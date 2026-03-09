@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Aozora Accounts</title>
+    <meta name="description" content="Download Aozora Accounts for Windows, Mobile, and Web.">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="Aozora.svg">
+    <!-- Load modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #09090b;
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --card-border: rgba(255, 255, 255, 0.06);
+            --card-hover: rgba(255, 255, 255, 0.05);
+            --text-main: #FAFAFA;
+            --text-muted: #A1A1AA;
+            --accent-1: #3b82f6;
+            --accent-2: #8b5cf6;
+            --disabled-bg: rgba(255, 255, 255, 0.03);
+            --disabled-text: #52525b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            background-image:
+                radial-gradient(circle at 10% 0%, rgba(59, 130, 246, 0.1), transparent 30%),
+                radial-gradient(circle at 90% 100%, rgba(139, 92, 246, 0.1), transparent 30%);
+            padding-bottom: 4rem;
+        }
+
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: 50px 50px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+            z-index: -1;
+        }
+
+        /* Navbar */
+        nav {
+            padding: 1.5rem 5%;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--card-border);
+            margin-bottom: 4rem;
+            background: rgba(9, 9, 11, 0.8);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-logo {
+            width: 32px;
+            height: 32px;
+        }
+
+        .nav-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: -0.01em;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            padding: 0 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(180deg, #FFFFFF 0%, #A1A1AA 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            line-height: 1.6;
+        }
+
+        /* Category Layout */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+
+        .category-section {
+            animation: slideUp 0.6s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .category-section:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .category-section:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .category-section:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 0.75rem;
+        }
+
+        .category-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .category-header svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--text-muted);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover:not(.disabled) {
+            background: var(--card-hover);
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--card-border);
+        }
+
+        .card-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-main);
+            stroke: var(--text-main);
+        }
+
+        .card-title {
+            flex-grow: 1;
+        }
+
+        .card-title h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-title p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .badge {
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-live {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .badge-soon {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 1rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin-top: auto;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            border: 1px solid var(--card-border);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .card.disabled .btn {
+            background: var(--disabled-bg);
+            color: var(--disabled-text);
+            cursor: not-allowed;
+            border-color: transparent;
+        }
+
+        .card.disabled .card-icon svg {
+            fill: var(--text-muted);
+            opacity: 0.5;
+        }
+
+        .card.disabled h3 {
+            color: var(--text-muted);
+        }
+
+        .card-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid-bg"></div>
+
+    <nav>
+        <img src="Aozora.svg" alt="Aozora Logo" class="nav-logo">
+        <span class="nav-title">Aozora Accounts</span>
+    </nav>
+
+    <div class="hero">
+        <h1>Enterprise Management,<br>Everywhere You Work.</h1>
+        <p>Download the official Aozora Accounts application for your preferred platform, or access your workspace
+            instantly via the web.</p>
+    </div>
+
+    <div class="container">
+
+        <!-- Desktop Category -->
+        <div class="category-section">
+            <div class="category-header">
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <h2>Desktop Applications</h2>
+            </div>
+
+            <div class="grid">
+                <!-- Windows Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <!-- High Quality Windows Icon -->
+                            <svg viewBox="0 0 88 88" fill="currentColor">
+                                <path
+                                    d="M0,12.402l35.687-4.86l0.016,34.423H0V12.402z M35.67,46.366l0.031,35.319L0,76.538V46.366H35.67z M39.992,6.965 L87.989,0.011v41.972l-47.997-0.01V6.965z M88,46.347V88l-48.008-6.666V46.362L88,46.347z" />
+                            </svg>
+                        </div>
+                        <div class="card-title">
+                            <h3>Windows</h3>
+                            <p>Windows 10 / 11</p>
+                        </div>
+                        <span class="badge badge-live">Available</span>
+                    </div>
+                    <p class="card-desc">The fully-featured desktop experience native for Windows workstations. Includes
+                        offline capabilities and automated backups.</p>
+                    <a href="AozoraAccounts_Setup_v1.0.0.exe" download class="btn btn-primary">Download Setup</a>
+                </div>
+
+                <!-- macOS Card -->
+                <div class="card disabled">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 170 170" fill="currentColor">
+                                <path
+                                    d="M121 73.1c0-15.5 12.6-24.8 13.2-25.1-7.2-10.5-18.3-12-23.1-12.1-9.8-1-19.4 5.8-24.4 5.8-5 0-13.1-5.7-21.3-5.5-10.6.1-20.4 6.2-25.9 15.6-11.1 19.2-2.9 47.7 8 63.4 5.3 7.6 11.5 16 19.7 15.7 7.9-.3 11-5.1 20.5-5.1 9.5 0 12.3 5.1 20.6 4.9 8.5-.1 13.8-7.8 19-15.4 6-8.7 8.5-17.1 8.7-17.6-1.5-.7-15-5.8-15-24.6zM102.6 30c4.3-5.3 7.2-12.6 6.4-19.9-6.3.3-14 4.2-18.3 9.4-3.9 4.6-7.2 12-6.2 19.1 7.1.5 13.9-3.4 18.1-8.6z" />
+                            </svg>
+                        </div>
+                        <div class="card-title">
+                            <h3>macOS</h3>
+                            <p>Apple Silicon & Intel</p>
+                        </div>
+                        <span class="badge badge-soon">Coming Soon</span>
+                    </div>
+                    <p class="card-desc">Native macOS application optimized for Apple Silicon (M1/M2/M3) and Intel Macs.
+                        Currently in final testing phase.</p>
+                    <button class="btn" disabled>Coming Soon</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Category -->
+        <div class="category-section">
+            <div class="category-header">
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+                <h2>Mobile Applications</h2>
+            </div>
+
+            <div class="grid">
+                <!-- iOS Card -->
+                <div class="card disabled">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 170 170" fill="currentColor">
+                                <path
+                                    d="M121 73.1c0-15.5 12.6-24.8 13.2-25.1-7.2-10.5-18.3-12-23.1-12.1-9.8-1-19.4 5.8-24.4 5.8-5 0-13.1-5.7-21.3-5.5-10.6.1-20.4 6.2-25.9 15.6-11.1 19.2-2.9 47.7 8 63.4 5.3 7.6 11.5 16 19.7 15.7 7.9-.3 11-5.1 20.5-5.1 9.5 0 12.3 5.1 20.6 4.9 8.5-.1 13.8-7.8 19-15.4 6-8.7 8.5-17.1 8.7-17.6-1.5-.7-15-5.8-15-24.6zM102.6 30c4.3-5.3 7.2-12.6 6.4-19.9-6.3.3-14 4.2-18.3 9.4-3.9 4.6-7.2 12-6.2 19.1 7.1.5 13.9-3.4 18.1-8.6z" />
+                            </svg>
+                        </div>
+                        <div class="card-title">
+                            <h3>iOS</h3>
+                            <p>iPhone & iPad</p>
+                        </div>
+                        <span class="badge badge-soon">Coming Soon</span>
+                    </div>
+                    <p class="card-desc">Manage invoices, track clients, and view your catalog on the go from your Apple
+                        devices.</p>
+                    <button class="btn" disabled>Available Soon on App Store</button>
+                </div>
+
+                <!-- Android Card -->
+                <div class="card disabled">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <!-- High Quality Android Icon -->
+                            <svg viewBox="0 0 576 512" fill="currentColor">
+                                <path
+                                    d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l48,83.24C73.16,202.84,24,279.79,24,368H552c0-88.21-49.16-165.16-122.85-210.55" />
+                            </svg>
+                        </div>
+                        <div class="card-title">
+                            <h3>Android</h3>
+                            <p>Android 9.0+</p>
+                        </div>
+                        <span class="badge badge-soon">Coming Soon</span>
+                    </div>
+                    <p class="card-desc">The complete Aozora Accounts mobile experience optimized for the Android
+                        ecosystem.</p>
+                    <button class="btn" disabled>Available Soon on Play Store</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Web Category -->
+        <div class="category-section">
+            <div class="category-header">
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                </svg>
+                <h2>Cloud Access</h2>
+            </div>
+
+            <div class="grid" style="grid-template-columns: 1fr;">
+                <div class="card"
+                    style="flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem;">
+                    <div
+                        style="flex: 0 0 auto; width: 64px; height: 64px; background: rgba(255,255,255,0.05); border-radius: 16px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--card-border);">
+                        <!-- Global Web Icon -->
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path
+                                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div style="flex: 1; min-width: 250px;">
+                        <div class="card-header" style="margin-bottom: 0.5rem;">
+                            <span class="badge badge-live">Live</span>
+                        </div>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Aozora Web Workspace</h3>
+                        <p class="card-desc" style="margin-bottom: 0;">Access your accounts from any browser, anywhere
+                            in the world. No installation required. Always updated to the latest version.</p>
+                    </div>
+                    <div style="flex: 0 0 auto; width: 250px;">
+                        <a href="https://workspace.accounts.aozoradesu.com/" target="_blank" class="btn btn-secondary">
+                            Open Workspace
+                            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
