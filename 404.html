@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Aozora Accounts</title>
+    <meta name="description" content="The page you are looking for could not be found.">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="Aozora.svg">
+    <!-- Load modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #09090b;
+            --text-main: #FAFAFA;
+            --text-muted: #A1A1AA;
+            --accent-1: #3b82f6;
+            --accent-2: #8b5cf6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            background-image:
+                radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.05), transparent 40%),
+                radial-gradient(circle at 10% 90%, rgba(139, 92, 246, 0.08), transparent 30%);
+        }
+
+        .grid-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: 50px 50px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            mask-image: radial-gradient(circle at center, black 10%, transparent 80%);
+            -webkit-mask-image: radial-gradient(circle at center, black 10%, transparent 80%);
+            z-index: 0;
+        }
+
+        .ambient-glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: conic-gradient(from 180deg at 50% 50%, var(--accent-1) 0deg, var(--accent-2) 180deg, var(--accent-1) 360deg);
+            filter: blur(100px);
+            opacity: 0.1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: spin 8s linear infinite;
+            z-index: 0;
+            border-radius: 50%;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 600px;
+            padding: 2rem;
+            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--text-main) 0%, rgba(255, 255, 255, 0.2) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.05em;
+            position: relative;
+        }
+
+        .error-code::before,
+        .error-code::after {
+            content: "404";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.65;
+        }
+
+        .error-code::before {
+            background: linear-gradient(135deg, var(--accent-1), transparent);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            z-index: -1;
+            animation: glitch1 3s infinite linear alternate-reverse;
+        }
+
+        .error-code::after {
+            background: linear-gradient(135deg, var(--accent-2), transparent);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            z-index: -2;
+            animation: glitch2 2.5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch1 {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            20% {
+                transform: translate(-3px, 1px);
+            }
+
+            40% {
+                transform: translate(-1px, -2px);
+            }
+
+            60% {
+                transform: translate(3px, 2px);
+            }
+
+            80% {
+                transform: translate(1px, -3px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        @keyframes glitch2 {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            20% {
+                transform: translate(3px, -1px);
+            }
+
+            40% {
+                transform: translate(1px, 3px);
+            }
+
+            60% {
+                transform: translate(-3px, -2px);
+            }
+
+            80% {
+                transform: translate(-1px, 2px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+            letter-spacing: -0.02em;
+        }
+
+        p.description {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover svg {
+            transform: translateX(-4px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid-bg"></div>
+    <div class="ambient-glow"></div>
+
+    <div class="container">
+        <div class="error-code">404</div>
+        <h2>Lost in the Cloud</h2>
+        <p class="description">The page you are looking for has been moved, deleted, or possibly never existed. Let's
+            get you back to familiar territory.</p>
+
+        <a href="/" class="btn">
+            <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Return to Dashboard
+        </a>
+    </div>
+</body>
+
+</html>
