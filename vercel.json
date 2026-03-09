@@ -8,7 +8,7 @@
         {
             "src": "/.*",
             "status": 404,
-            "dest": "/404 error/index.html"
+            "dest": "/404%20error/index.html"
         }
     ]
 }
