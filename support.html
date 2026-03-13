@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support & Data Deletion - Aozora Accounts</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="Aozora.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #09090b;
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --card-border: rgba(255, 255, 255, 0.06);
+            --text-main: #FAFAFA;
+            --text-muted: #A1A1AA;
+            --accent-1: #3b82f6;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .logo {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        section {
+            margin-bottom: 3rem;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 2rem;
+            border-radius: 20px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--accent-1);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+        }
+
+        .contact-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--accent-1);
+        }
+
+        .email {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        footer {
+            margin-top: 5rem;
+            text-align: center;
+            border-top: 1px solid var(--card-border);
+            padding-top: 2rem;
+        }
+
+        .back-link {
+            color: var(--accent-1);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img src="Aozora.svg" alt="Aozora Logo" class="logo">
+            <h1>Customer Support</h1>
+            <p>We're here to help you get the most out of Aozora Accounts.</p>
+        </header>
+
+        <section>
+            <h2>Contact Support</h2>
+            <p>Have a question, found a bug, or need help with your account? Our team is available to assist you via email.</p>
+            <div class="contact-box">
+                <p>Official Support Email:</p>
+                <div class="email">contact@aozoradesu.com</div>
+            </div>
+        </section>
+
+        <section id="data-deletion">
+            <h2>Data Deletion Request</h2>
+            <p>In compliance with Apple App Store and Google Play Store regulations, we provide users with the ability to delete their accounts and all associated data.</p>
+            <p><strong>How to delete your data:</strong></p>
+            <ol style="color: var(--text-muted); padding-left: 1.5rem;">
+                <li>Email <strong>contact@aozoradesu.com</strong> with the subject "Data Deletion Request".</li>
+                <li>Include the email address associated with your account.</li>
+                <li>Once verified, we will delete your account and all associated cloud data within 7 business days.</li>
+            </ol>
+            <p><em>Note: This action is permanent and cannot be undone.</em></p>
+        </section>
+
+        <footer>
+            <a href="index.html" class="back-link">← Back to Downloads</a>
+        </footer>
+    </div>
+</body>
+
+</html>
