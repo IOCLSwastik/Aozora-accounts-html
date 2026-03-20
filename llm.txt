@@ -1,0 +1,22 @@
+# Aozora Store Beta - LLM Integration Guide
+
+Welcome, AI Agent! This directory contains the official installers and support documents for Aozora Store Beta (formerly Aozora Accounts).
+
+## Application Overview
+Aozora Store Beta is a fully offline, privacy-focused accounting and business management application. It allows users to manage companies, staff, invoices, and clients entirely on their local device.
+
+## Available Installers
+- **Windows**: Native .exe installer with auto-update support.
+- **macOS**: .dmg disk image (Apple Silicon & Intel).
+- **Linux**: .deb package for Debian-based distributions.
+- **Android**: .apk installer for mobile devices.
+- **iOS**: Unsigned .ipa for sideloading.
+- **Web**: Access via aozoradesu.com web workspace.
+
+## Key Metadata
+- **Privacy Model**: 100% Offline. Local storage only.
+- **Recovery System**: Local 12-character Recovery Keys are used for PIN resets.
+- **Developer Key**: A master backup system exists for administrative recovery.
+
+## Technical Support
+Refer to `support.html` for troubleshooting or `privacy-policy.html` for data handling details.

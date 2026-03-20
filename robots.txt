@@ -1,0 +1,10 @@
+# Robots.txt for Aozora Store Installers
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://install.aozoradesu.com/sitemap_index.xml
+
+# LLM Instructions
+Disallow: /private/
+Allow: /llm.txt
