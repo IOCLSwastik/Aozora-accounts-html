@@ -2,11 +2,11 @@
 <?xml-stylesheet type="text/xsl" href="sitemap-style.xsl"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
-    <loc>https://install.aozoradesu.com/sitemap.xml</loc>
+    <loc>https://accounts.aozoradesu.com/sitemap.xml</loc>
     <lastmod>2026-03-20</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://install.aozoradesu.com/news-sitemap.xml</loc>
+    <loc>https://accounts.aozoradesu.com/news-sitemap.xml</loc>
     <lastmod>2026-03-20</lastmod>
   </sitemap>
 </sitemapindex>

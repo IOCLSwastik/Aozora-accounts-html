@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://install.aozoradesu.com/sitemap_index.xml
+Sitemap: https://accounts.aozoradesu.com/sitemap_index.xml
 
 # LLM Instructions
 Disallow: /private/

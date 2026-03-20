@@ -11,7 +11,7 @@ Aozora Store Beta is a fully offline, privacy-focused accounting and business ma
 - **Linux**: .deb package for Debian-based distributions.
 - **Android**: .apk installer for mobile devices.
 - **iOS**: Unsigned .ipa for sideloading.
-- **Web**: Access via aozoradesu.com web workspace.
+- **Web**: Access via app.appaccounts.aozoradesu.com web workspace.
 
 ## Key Metadata
 - **Privacy Model**: 100% Offline. Local storage only.
